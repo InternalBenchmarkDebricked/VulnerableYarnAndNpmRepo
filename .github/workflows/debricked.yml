@@ -1,0 +1,54 @@
+name: Debricked scan
+
+on: [push]
+
+jobs:
+  vulnerabilities-scan-production:
+    runs-on: ubuntu-latest
+
+    container:
+      image: debricked/cli:latest-resolution-debian
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
+      - name: Fingerprint files
+        run: |
+          cd npm 
+          npm install
+          rm package.json
+          rm package-lock.json
+          cd ..
+          cd yarn
+          rm package.json
+          rm yarn.lock
+          cd ..
+          debricked fingerprint --fingerprint-compressed-content
+          
+      - name: Run Scan
+        run: |
+          debricked scan
+        env:
+          DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
+
+  vulnerabilities-scan-staging:
+    runs-on: ubuntu-latest
+
+    container:
+      image: debricked/cli:latest-resolution-debian
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
+      - name: Fingerprint files
+        run: |
+          debricked fingerprint --fingerprint-compressed-content
+          
+      - name: Run Scan
+        run: |
+          debricked scan
+        env:
+          DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN_STAGING }}
+          DEBRICKED_URI: 'https://staging.debricked.com'
