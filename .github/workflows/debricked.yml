@@ -22,10 +22,10 @@ jobs:
           debricked fingerprint
           cd ..
           mv node_modules/debricked.fingerprints.txt .
-          cat debricked.fingerprints.txt
           
       - name: Run Scan
         run: |
+          cat debricked.fingerprints.txt
           debricked scan
         env:
           DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
