@@ -1,4 +1,0 @@
-overrides:
-  - pURL: "pkg:npm/bootstrap-loader"
-    fileRegexes: # (PCRE2)
-      - @verdaccio/file-locking/.idea/misc.xml
