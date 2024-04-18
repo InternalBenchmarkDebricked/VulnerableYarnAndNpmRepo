@@ -26,7 +26,9 @@ jobs:
           cd node_modules
           debricked fingerprint
           cd ..
-          mv node_modules/debricked.fingerprints.txt .
+          cd ..
+          mv npm/node_modules/debricked.fingerprints.txt .
+          cat debricked.fingerprints.txt
           
       - name: Run Scan
         run: |
