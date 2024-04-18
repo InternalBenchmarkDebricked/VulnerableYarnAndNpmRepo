@@ -15,16 +15,16 @@ jobs:
         
       - name: Fingerprint files
         run: |
-          cd npm 
-          npm install
-          rm package.json
-          rm package-lock.json
-          cd ..
           cd yarn
           rm package.json
           rm yarn.lock
           cd ..
-          debricked fingerprint --fingerprint-compressed-content
+          cd npm 
+          npm install
+          rm package.json
+          rm package-lock.json
+          cd node_modules
+          debricked fingerprint
           
       - name: Run Scan
         run: |
