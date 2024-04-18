@@ -23,8 +23,9 @@ jobs:
           npm install
           rm package.json
           rm package-lock.json
-          cd node_modules
-          debricked fingerprint
+          cd ..
+          mv npm/node_modules npm/modules
+          debricked fingerprint npm/modules
           
       - name: Run Scan
         run: |
@@ -44,7 +45,17 @@ jobs:
         
       - name: Fingerprint files
         run: |
-          debricked fingerprint --fingerprint-compressed-content
+          cd yarn
+          rm package.json
+          rm yarn.lock
+          cd ..
+          cd npm 
+          npm install
+          rm package.json
+          rm package-lock.json
+          cd ..
+          mv npm/node_modules npm/modules
+          debricked fingerprint npm/modules
           
       - name: Run Scan
         run: |
