@@ -42,11 +42,6 @@ jobs:
         
       - name: Fingerprint files
         run: |
-          cd yarn
-          rm package.json
-          rm yarn.lock
-          cd ..
-          cd npm 
           npm install
           rm package.json
           rm package-lock.json
@@ -54,6 +49,7 @@ jobs:
           debricked fingerprint
           cd ..
           mv node_modules/debricked.fingerprints.txt .
+          cat debricked.fingerprints.txt
           
       - name: Run Scan
         run: |
