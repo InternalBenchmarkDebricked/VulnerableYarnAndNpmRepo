@@ -1,4 +1,0 @@
-overrides:
-  - pURL: "pkg:npm/JSONStream"
-    fileRegexes: # (PCRE2)
-      - JSONStream/bin.js
