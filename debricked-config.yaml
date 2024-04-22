@@ -1,4 +1,4 @@
 overrides:
-  - pURL: "pkg:npm/bootstrap-loader"
+  - pURL: "pkg:npm/JSONStream"
     fileRegexes: # (PCRE2)
-      - "@verdaccio/file-locking/.idea/misc.xml"
+      - "JSONStream/bin.js"
